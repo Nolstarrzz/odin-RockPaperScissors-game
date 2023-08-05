@@ -1,9 +1,9 @@
 let choices = ['rock','paper','scissors']
 let computerChoice;
 let playerChoice;
-let playerWins;
-let computerWins;
-
+let playerWins = 0;
+let computerWins = 0;
+let gameNumber;
 
 function getComputerChoice()
 {
@@ -14,19 +14,25 @@ function getComputerChoice()
 
 function getPlayerSelection()
 {
-    console.log(choices + '. Here are the choices, type your choice now');
     while (true) {
         playerChoice = prompt(choices).toLowerCase();
         if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
-          break; // Exit the loop if a valid choice is entered
-        } else {
+          break;
+        } 
+        else if (playerChoice == NaN)
+        {
+            
+        }
+        else {
           alert("Invalid choice. Please enter rock, paper, or scissors.");
         }
       }
+    return playerChoice;
 }
 
-function playGame(playerChoice , computerChoice)
+function playRound(playerChoice, computerChoice)
 {
+    console.log("You Chose " + playerChoice + " and the computer chose " + computerChoice);
     if (playerChoice == 'rock' && computerChoice == 'scissors' || playerChoice == 'paper' && computerChoice == 'rock' || playerChoice == 'scissors' && computerChoice == 'paper')
     {
         playerWins++;
@@ -37,4 +43,41 @@ function playGame(playerChoice , computerChoice)
     {
         return"It was a tie, you have " + playerWins + " , the computer has " + computerWins;
     }
+    else
+    {
+        computerWins++;
+        return"You lost, you have " + playerWins + " , the computer has " + computerWins;
+    }
 }
+
+function game()
+{
+    let counter = 0;
+    gameNumber = prompt('How many games do you want to play?');
+    let intNumber = parseInt(gameNumber);
+    while (true)
+    {
+        getComputerChoice();
+        getPlayerSelection();
+        console.log(playRound(playerChoice, computerChoice));
+        counter++;
+        if (counter == intNumber)
+        {
+            break;
+        }
+    }
+    if (playerWins > computerWins)
+    {
+        console.log('You Won!')
+    }
+    else if (playerWins < computerWins)
+    {
+        console.log('You Lose!')
+    }
+    else
+    {
+        console.log('It was a tie')
+    }
+}
+
+game();
