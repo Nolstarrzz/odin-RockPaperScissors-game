@@ -19,10 +19,6 @@ function getPlayerSelection()
         if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
           break;
         } 
-        else if (playerChoice == NaN)
-        {
-            
-        }
         else {
           alert("Invalid choice. Please enter rock, paper, or scissors.");
         }
@@ -80,4 +76,4 @@ function game()
     }
 }
 
-game();
+
