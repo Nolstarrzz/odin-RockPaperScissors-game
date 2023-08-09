@@ -1,8 +1,11 @@
-.body {
+body {
     font-family: 'roboto', sans-serif;
     font-size: 16px;
     margin: 0px;
     padding: 0px;
+    background-color: black;
+    color: white;
+    height: 100vh;
 }
 
 .buttons {
@@ -17,9 +20,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: white;
+    background-color: black;
+    margin: 0px;
+    padding: 0px;
 }
 
-.wins {
+#wins #choiceText{
     font-size: 32px; 
     margin-top: 25px;  
 }
@@ -32,4 +39,6 @@
     color: white;
     width: 100%;
     height: auto;
+    margin: 0px;
+    padding: 0px;
 }
