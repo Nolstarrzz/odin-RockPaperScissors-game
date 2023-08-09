@@ -1,49 +1,46 @@
-let choices = ['rock','paper','scissors']
-let computerChoice;
-let playerChoice;
+const choices = ['rock', 'paper', 'scissors'];
 let playerWins = 0;
 let computerWins = 0;
-let gameNumber;
 
-function getComputerChoice()
-{
-    computerChoice = choices[(Math.floor(Math.random() * choices.length))];
-    computerChoice = computerChoice.toLowerCase();
-    return computerChoice;
+const rockButton = document.querySelector('#rock');
+const paperButton = document.querySelector('#paper');
+const scissorsButton = document.querySelector('#scissors');
+
+rockButton.addEventListener("click", function() {
+    playRound('rock');
+});
+
+paperButton.addEventListener("click", function() {
+    playRound('paper');
+});
+
+scissorsButton.addEventListener("click", function() {
+    playRound('scissors');
+});
+
+function getComputerChoice() {
+    return choices[Math.floor(Math.random() * choices.length)];
 }
 
-function getPlayerSelection()
-{
-    while (true) {
-        playerChoice = prompt(choices).toLowerCase();
-        if (playerChoice === "rock" || playerChoice === "paper" || playerChoice === "scissors") {
-          break;
-        } 
-        else {
-          alert("Invalid choice. Please enter rock, paper, or scissors.");
-        }
-      }
-    return playerChoice;
-}
+function playRound(playerChoice) {
+    const computerChoice = getComputerChoice();
+    console.log("You chose " + playerChoice + " and the computer chose " + computerChoice);
 
-function playRound(playerChoice, computerChoice)
-{
-    console.log("You Chose " + playerChoice + " and the computer chose " + computerChoice);
-    if (playerChoice == 'rock' && computerChoice == 'scissors' || playerChoice == 'paper' && computerChoice == 'rock' || playerChoice == 'scissors' && computerChoice == 'paper')
-    {
+    if (playerChoice === computerChoice) {
+        console.log("It was a tie!");
+    } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'paper' && computerChoice === 'rock') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
         playerWins++;
-        return"You've Won, you have " + playerWins + " , the computer has " + computerWins;
+        console.log("You've won! Player: " + playerWins + ", Computer: " + computerWins);
+    } else {
+        computerWins++;
+        console.log("You lost. Player: " + playerWins + ", Computer: " + computerWins);
     }
 
-    else if (playerChoice === computerChoice)
-    {
-        return"It was a tie, you have " + playerWins + " , the computer has " + computerWins;
-    }
-    else
-    {
-        computerWins++;
-        return"You lost, you have " + playerWins + " , the computer has " + computerWins;
-    }
+    // Optionally, you can update the game status here if needed
 }
 
 function game()
